@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Banner from "./Components/Banner/Banner";
 import Sidebar from "./Components/Home/Sidebar";
 import Navbar from "./Components/Navbar/Navbar";
+import { Providers } from "./redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,18 +16,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-white `}>
-        <Navbar />
-        <Banner></Banner>
-        <div className=" grid grid-cols-12 gap-4  ">
-          {/* sidebar  */}
-          <div className=" col-span-2  ">
-            <Sidebar />
+      <Providers>
+        <body className={`${inter.className} bg-white `}>
+          <Navbar />
+          <Banner></Banner>
+          <div className=" grid grid-cols-12 gap-4  ">
+            {/* sidebar  */}
+            <div className=" col-span-2  ">
+              <Sidebar />
+            </div>
+            {/* mainMenu */}
+            <div className=" col-span-10">{children}</div>
           </div>
-          {/* mainMenu */}
-          <div className=" col-span-10">{children}</div>
-        </div>
-      </body>
+        </body>
+      </Providers>
     </html>
   );
 }

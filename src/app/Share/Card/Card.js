@@ -1,6 +1,9 @@
+import { addToCart } from "@/app/redux/API_Slices/cartSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
-const Card = () => {
+const Card = ({ item }) => {
+  const dispatch = useDispatch();
   return (
     <div className="product-card cart-type-neon h-full transform overflow-hidden rounded border border-border-200 bg-light shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow">
       <div className="relative flex h-48 w-auto cursor-pointer items-center justify-center sm:h-64">
@@ -28,7 +31,7 @@ const Card = () => {
         <h3 class="mb-4 cursor-pointer truncate text-xs text-body md:text-sm">
           Allegro Bbq Sauce
         </h3>
-        <div class="flex overflow-hidden w-full h-7 md:h-9 bg-accent text-light rounded">
+        <div class=" group flex overflow-hidden w-full h-7 md:h-9 bg-accent text-light rounded bg-gray-200 hover:bg-[#009F7F] text-gray-400 hover:text-white ">
           <button class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0">
             <span class="sr-only">minus</span>
             <svg
@@ -48,7 +51,8 @@ const Card = () => {
             1
           </div>
           <button
-            class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0"
+            onClick={() => dispatch(addToCart(item))}
+            class=" bg-gray-300 group-hover:bg-[#038369] cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0"
             title=""
           >
             <span class="sr-only">plus</span>
