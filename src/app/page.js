@@ -5,9 +5,14 @@ import Card from "./Share/Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-export default function Home() {
+import Offcanvas from "./Share/Offcanvas/Offcanvas";
+import Sidebar from "./Components/Home/Sidebar";
+import ProductModal from "./Share/Modal/ProductModal";
+export default function Home({ children }) {
   const cartData = useSelector((state) => state.cartSlice.cartData);
   const [products, setProducts] = useState([]);
+  const [isShow, setIsShow] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   console.log("cartData", cartData);
   useEffect(() => {
     const loadData = async () => {
@@ -27,10 +32,43 @@ export default function Home() {
   }, []);
   return (
     <main>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
-        {products?.map((item) => (
-          <Card item={item} />
-        ))}
+      {isShowModal && (
+        <ProductModal
+          isShowModal={isShowModal}
+          setIsShowModal={setIsShowModal}
+        ></ProductModal>
+      )}
+      {/* {isShow && <Offcanvas isShow={isShow} setIsShow={setIsShow} />} */}
+      <Banner></Banner>
+      <div className=" grid grid-cols-12 gap-4  ">
+        {/* sidebar  */}
+        <div className=" col-span-2  ">
+          <Sidebar />
+        </div>
+        {/* mainMenu */}
+        <div className=" col-span-10">
+          {" "}
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
+            {products?.map((item) => (
+              <Card item={item} setIsShowModal={setIsShowModal} />
+            ))}
+          </div>
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
+            {products?.map((item) => (
+              <Card item={item} />
+            ))}
+          </div>
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
+            {products?.map((item) => (
+              <Card item={item} />
+            ))}
+          </div>
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
+            {products?.map((item) => (
+              <Card item={item} />
+            ))}
+          </div>
+        </div>
       </div>
     </main>
   );

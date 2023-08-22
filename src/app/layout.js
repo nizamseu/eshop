@@ -1,3 +1,4 @@
+"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -5,6 +6,8 @@ import Banner from "./Components/Banner/Banner";
 import Sidebar from "./Components/Home/Sidebar";
 import Navbar from "./Components/Navbar/Navbar";
 import { Providers } from "./redux/provider";
+import Offcanvas from "./Share/Offcanvas/Offcanvas";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,20 +17,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const [isShow, setIsShow] = useState(false);
   return (
     <html lang="en">
       <Providers>
-        <body className={`${inter.className} bg-white `}>
-          <Navbar />
-          <Banner></Banner>
-          <div className=" grid grid-cols-12 gap-4  ">
-            {/* sidebar  */}
-            <div className=" col-span-2  ">
-              <Sidebar />
-            </div>
-            {/* mainMenu */}
-            <div className=" col-span-10">{children}</div>
-          </div>
+        <body className={`${inter.className} bg-white w-fulls `}>
+          <Navbar isShow={isShow} setIsShow={setIsShow} />
+          {children}
         </body>
       </Providers>
     </html>
