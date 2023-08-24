@@ -1,12 +1,14 @@
 "use client";
 
+import { handleIsCartShow } from "@/app/redux/API_Slices/commonSlice";
 import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
+import { useDispatch } from "react-redux";
 const Navbar = ({ isShow, setIsShow }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const dispatch = useDispatch();
   return (
     <div>
       <nav class=" shadow-lg  fixed  top-0 z-10 bg-white border-gray-200 w-full">
@@ -57,11 +59,7 @@ const Navbar = ({ isShow, setIsShow }) => {
                 </a>
               </li>
               <li>
-                <button
-                  id="dropdownNavbarLink"
-                  data-dropdown-toggle="dropdownNavbar"
-                  class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                >
+                <button class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                   Dropdown{" "}
                 </button>
                 {/* <!-- Dropdown menu --> */}
@@ -192,7 +190,7 @@ const Navbar = ({ isShow, setIsShow }) => {
                   Contact
                 </a>
               </li>
-              <button onClick={() => setIsShow(true)}>
+              <button onClick={() => dispatch(handleIsCartShow(true))}>
                 <HiShoppingCart size={30} />
               </button>
             </ul>

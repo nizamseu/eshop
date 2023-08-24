@@ -10,10 +10,10 @@ import Sidebar from "./Components/Home/Sidebar";
 import ProductModal from "./Share/Modal/ProductModal";
 export default function Home({ children }) {
   const cartData = useSelector((state) => state.cartSlice.cartData);
+  const isShow = useSelector((state) => state.commonSlice.isCartShow);
   const [products, setProducts] = useState([]);
-  const [isShow, setIsShow] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
-  console.log("cartData", cartData);
+  console.log("isShow", isShow);
   useEffect(() => {
     const loadData = async () => {
       const res4 = await axios(
@@ -30,15 +30,24 @@ export default function Home({ children }) {
     };
     loadData();
   }, []);
+
+  const handleCloseModal = () => {
+    setIsShowModal(false);
+  };
+  const handleOpenModal = (e) => {
+    e.stopPropagation();
+    setIsShowModal(true);
+  };
   return (
     <main>
       {isShowModal && (
         <ProductModal
           isShowModal={isShowModal}
           setIsShowModal={setIsShowModal}
+          onClose={handleCloseModal}
         ></ProductModal>
       )}
-      {/* {isShow && <Offcanvas isShow={isShow} setIsShow={setIsShow} />} */}
+      {isShow && <Offcanvas />}
       <Banner></Banner>
       <div className=" grid grid-cols-12 gap-4  ">
         {/* sidebar  */}
@@ -50,7 +59,7 @@ export default function Home({ children }) {
           {" "}
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
             {products?.map((item) => (
-              <Card item={item} setIsShowModal={setIsShowModal} />
+              <Card item={item} handleOpenModal={handleOpenModal} />
             ))}
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">

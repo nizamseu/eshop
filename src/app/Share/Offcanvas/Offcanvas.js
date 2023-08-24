@@ -1,7 +1,11 @@
 import React from "react";
 import ShortCart from "../Card/ShortCart";
 import { RxCross2 } from "react-icons/rx";
-const Offcanvas = ({ isShow, setIsShow }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { handleIsCartShow } from "@/app/redux/API_Slices/commonSlice";
+const Offcanvas = () => {
+  const isShow = useSelector((state) => state.commonSlice.isCartShow);
+  const dispatch = useDispatch();
   return (
     <div className=" ">
       {isShow && (
@@ -16,7 +20,7 @@ const Offcanvas = ({ isShow, setIsShow }) => {
             <div class="inline-block align-center bg-white  text-left overflow-hidden shadow-xl transform transition-all  h-screen fixed top-0 right-0 w-96 ">
               <div className=" pb-2 flex justify-between items-center px-5 mt-2 border-b">
                 <h1 className=" text-lg">Your Cart</h1>{" "}
-                <button onClick={() => setIsShow(false)}>
+                <button onClick={() => dispatch(handleIsCartShow(false))}>
                   <RxCross2 size={30} />
                 </button>
               </div>
