@@ -20,6 +20,7 @@ const ProductModal = ({ setIsShowModal, onClose }) => {
     };
   }, [onClose]);
   console.log("onClose", onClose);
+
   return (
     <div>
       <div class="fixed z-50 overflow-y-auto top-0 w-full left-0">

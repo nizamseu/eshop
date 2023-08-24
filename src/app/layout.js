@@ -8,6 +8,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import { Providers } from "./redux/provider";
 import Offcanvas from "./Share/Offcanvas/Offcanvas";
 import { useState } from "react";
+import MobileFooer from "./Components/Footer/MobileFooer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         <body className={`${inter.className} bg-white w-fulls `}>
           <Navbar isShow={isShow} setIsShow={setIsShow} />
           {children}
+          <MobileFooer />
         </body>
       </Providers>
     </html>

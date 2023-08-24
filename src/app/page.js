@@ -8,6 +8,9 @@ import axios from "axios";
 import Offcanvas from "./Share/Offcanvas/Offcanvas";
 import Sidebar from "./Components/Home/Sidebar";
 import ProductModal from "./Share/Modal/ProductModal";
+import MidiumCard from "./Share/Card/MidiumCard";
+import Glider from "react-glider";
+import "glider-js/glider.min.css";
 export default function Home({ children }) {
   const cartData = useSelector((state) => state.cartSlice.cartData);
   const isShow = useSelector((state) => state.commonSlice.isCartShow);
@@ -49,14 +52,78 @@ export default function Home({ children }) {
       )}
       {isShow && <Offcanvas />}
       <Banner></Banner>
+
+      <div className=" mx-5 mt-5 ">
+        <Glider
+          draggable
+          slidesToShow={3}
+          slidesToScroll={1}
+          responsive={[
+            {
+              breakpoint: 320,
+              settings: {
+                slidesToShow: 1.1,
+              },
+            },
+            {
+              breakpoint: 425,
+              settings: {
+                slidesToShow: 1.2,
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+              },
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+              },
+            },
+            {
+              breakpoint: 1280,
+              settings: {
+                slidesToShow: 2.3,
+              },
+            },
+            {
+              breakpoint: 1400,
+              settings: {
+                slidesToShow: 3,
+              },
+            },
+            {
+              breakpoint: 1500,
+              settings: {
+                slidesToShow: 3.3,
+              },
+            },
+            {
+              breakpoint: 1560,
+              settings: {
+                slidesToShow: 3.5,
+              },
+            },
+          ]}
+        >
+          {[...Array(5)]?.map((item) => (
+            <div className=" mx-2">
+              <MidiumCard />
+            </div>
+          ))}
+        </Glider>
+      </div>
+
       <div className=" grid grid-cols-12 gap-4  ">
         {/* sidebar  */}
-        <div className=" col-span-2  ">
+        <div className=" hidden md:block md:col-span-2  ">
           <Sidebar />
         </div>
         {/* mainMenu */}
-        <div className=" col-span-10">
-          {" "}
+        <div className=" col-span-12 md:col-span-10  mx-2 md:mx-0">
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 mt-10">
             {products?.map((item) => (
               <Card item={item} handleOpenModal={handleOpenModal} />
