@@ -5,30 +5,85 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { GiLoincloth } from "react-icons/gi";
+import Select from "react-select";
+import { BsBorderTop } from "react-icons/bs";
 const Navbar = ({ isShow, setIsShow }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const dispatch = useDispatch();
+  const isMobileSearch = useSelector(
+    (state) => state.commonSlice.isMobileSearch
+  );
+
+  const [selectedOption, setSelectedOption] = useState({
+    value: 1,
+    text: "Grocery",
+    icon: <GiLoincloth />,
+  });
+
+  console.log("selectedOption", selectedOption);
+  // handle onChange event of the dropdown
+  const handleChange = (e) => {
+    setSelectedOption(e);
+  };
+
+  const data = [
+    {
+      value: 1,
+      text: "Grocery",
+      icon: <GiLoincloth />,
+    },
+    {
+      value: 2,
+      text: "Bakery",
+      icon: <GiLoincloth />,
+    },
+    {
+      value: 3,
+      text: "Clothing",
+      icon: <GiLoincloth />,
+    },
+    {
+      value: 4,
+      text: "Dairy",
+      icon: <GiLoincloth />,
+    },
+  ];
   return (
     <div>
-      <nav class=" shadow-lg  fixed  top-0 z-10 bg-white border-gray-200 w-full">
+      <nav class=" hidden md:block shadow-lg  fixed  top-0 z-10 bg-white border-gray-200 ">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" class="flex items-center">
+          <Link href="/" class="flex items-center">
             <img
               src="https://pickbazar-react-rest.vercel.app/_next/image?url=https%3A%2F%2Fpickbazarlaravel.s3.ap-southeast-1.amazonaws.com%2F860%2FPickBazar.png&w=1920&q=75"
               class="h-8 mr-3"
               alt="Flowbite Logo"
             />
-            <select className=" py-4 px-3 pr-9 block w-40 border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500">
-              <option>Grocery</option>
-              <option>Bakery</option>
-              <option>Clothing</option>
-              <option>Dairy</option>
-            </select>
+            <Select
+              className=" hidden md:block"
+              value={selectedOption}
+              options={data}
+              onChange={handleChange}
+              getOptionLabel={(e) => (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "10px 5px",
+                  }}
+                >
+                  {e.icon}
+                  <span style={{ marginLeft: 5 }}>{e.text}</span>
+                </div>
+              )}
+            />
+
             {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Pick Bazar
           </span> */}
-          </a>
+          </Link>
           <button
             data-collapse-toggle="navbar-multi-level"
             type="button"
@@ -206,6 +261,74 @@ const Navbar = ({ isShow, setIsShow }) => {
           </div>
         </div>
       </nav>
+      {!isMobileSearch && (
+        <nav class=" mx-auto flex  justify-center items-center py-5  md:hidden shadow-lg  fixed  top-0 z-10 bg-white border-gray-200 w-full">
+          <Link href="/" class="flex items-center">
+            <img
+              src="https://pickbazar-react-rest.vercel.app/_next/image?url=https%3A%2F%2Fpickbazarlaravel.s3.ap-southeast-1.amazonaws.com%2F860%2FPickBazar.png&w=1920&q=75"
+              class="h-8 mr-3"
+              alt=" Logo"
+            />
+          </Link>
+        </nav>
+      )}
+
+      {isMobileSearch && (
+        <form className=" block md:hidden">
+          <div class="flex">
+            <Select
+              className=" text-xs rounded-e-none   "
+              value={selectedOption}
+              options={data}
+              onChange={handleChange}
+              getOptionLabel={(e) => (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "120px",
+                    borderTopRightRadius: "0px",
+                    borderBottomRightRadius: "0px",
+                  }}
+                >
+                  {/* {e.icon} */}
+                  <span style={{ marginLeft: 5 }}>{e.text}</span>
+                </div>
+              )}
+            />
+            <div class="relative w-full">
+              <input
+                type="search"
+                id="location-search"
+                class="block p-2 w-full z-20 text-sm text-gray-900 bg-white rounded-r-lg border-l-0  border border-gray-300 "
+                placeholder="Search for city or address"
+                required
+              />
+              <button
+                type="submit"
+                class="absolute top-0 right-0 h-full p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  "
+              >
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+                <span class="sr-only">Search</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      )}
     </div>
   );
 };

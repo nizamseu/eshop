@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import Card from "../Share/Card/Card";
 
 const Search = () => {
+  const [isShowModal, setIsShowModal] = useState(false);
   return (
     <div>
       <section class="w-full mt-10">

@@ -31,7 +31,7 @@ export default function Home({ children }) {
         })
         .catch((err) => {});
     };
-    loadData();
+    // loadData();
   }, []);
 
   const handleCloseModal = () => {
