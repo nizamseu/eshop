@@ -19,6 +19,12 @@ const Navbar = ({ isShow, setIsShow }) => {
               class="h-8 mr-3"
               alt="Flowbite Logo"
             />
+            <select className=" py-4 px-3 pr-9 block w-40 border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500">
+              <option>Grocery</option>
+              <option>Bakery</option>
+              <option>Clothing</option>
+              <option>Dairy</option>
+            </select>
             {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Pick Bazar
           </span> */}
