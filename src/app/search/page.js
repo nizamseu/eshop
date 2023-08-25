@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
+
+import Card from "../Share/Card/Card";
 
 const Search = () => {
   return (
     <div>
-      <section class="w-full">
+      <section class="w-full mt-10">
         <div class="mx-auto max-w-7xl px-2 py-10 lg:px-10">
           <div class="md:flex md:flex-row md:items-start md:justify-between">
             <div>
@@ -400,7 +403,14 @@ const Search = () => {
                 </ul>
               </div>
             </div>
-            <div class="h-[400px] w-full rounded-lg border-2 border-dashed px-2 lg:col-span-9 lg:h-full"></div>
+            {/* content  */}
+            <div class="h-[400px] w-full rounded-lg  px-2 lg:col-span-9 lg:h-full">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))]  gap-3 ">
+                {[...Array(15)].map((item) => (
+                  <Card item={item} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

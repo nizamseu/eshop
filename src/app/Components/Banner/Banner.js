@@ -1,6 +1,13 @@
+"use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const Banner = () => {
+  const router = useRouter();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.push("/search", { scroll: false });
+  };
   return (
     <div className="relative h-screen w-full">
       <img
@@ -25,21 +32,22 @@ const Banner = () => {
           day everyday
         </p>
         <div class="w-full max-w-3xl shadow-lg rounded-l-xl mt-5 md:mt-0 ">
-          <form class="w-full">
+          <form onSubmit={handleSubmit} class="w-full">
             <div class="relative flex rounded md:rounded-lg h-14 shadow-900">
               <label for="search" class="sr-only">
                 search
               </label>
               <input
-                id="search"
                 type="text"
                 autocomplete="off"
-                class=" pl-4 search item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-heading placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 focus:ring-0 bg-light ltr:pl-6 rtl:pr-6 ltr:pr-14 rtl:pl-14 ltr:rounded-tr-none rtl:rounded-tl-none ltr:rounded-br-none rtl:rounded-bl-none  border ltr:border-r-0 rtl:border-l-0 border-transparent focus:border-accent"
+                class=" pl-4  item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-heading placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 focus:ring-0 bg-light ltr:pl-6 rtl:pr-6 ltr:pr-14 rtl:pl-14 ltr:rounded-tr-none rtl:rounded-tl-none ltr:rounded-br-none rtl:rounded-bl-none  border ltr:border-r-0 rtl:border-l-0 border-transparent focus:border-accent"
                 name="search"
                 placeholder="Search your products from here"
-                value=""
               />
-              <button class=" text-white bg-[#019376] flex h-full min-w-[143px] items-center justify-center rounded-lg bg-accent px-8 font-semibold text-light transition-colors duration-200 hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 ltr:rounded-tl-none ltr:rounded-bl-none rtl:rounded-tr-none rtl:rounded-br-none">
+              <button
+                type="submit"
+                class=" text-white bg-[#019376] flex h-full min-w-[143px] items-center justify-center rounded-lg bg-accent px-8 font-semibold text-light transition-colors duration-200 hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 ltr:rounded-tl-none ltr:rounded-bl-none rtl:rounded-tr-none rtl:rounded-br-none"
+              >
                 <svg
                   viewBox="0 0 17.048 18"
                   class="h-4 w-4 ltr:mr-2.5 rtl:ml-2.5"
