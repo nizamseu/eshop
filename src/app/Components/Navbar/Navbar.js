@@ -12,7 +12,7 @@ import { BsBorderTop } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import ProductModal from "@/app/Share/Modal/ProductModal";
 import Offcanvas from "@/app/Share/Offcanvas/Offcanvas";
-const Navbar = ({ isShow, setIsShow }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const dispatch = useDispatch();
