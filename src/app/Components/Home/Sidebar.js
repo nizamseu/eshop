@@ -2,7 +2,7 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div className="sticky top-10">
+    <div className="sticky top-16">
       <nav class="  hs-accordion-group p-6 w-full flex flex-col flex-wrap pt-10">
         <ul class="space-y-1.5">
           <li>

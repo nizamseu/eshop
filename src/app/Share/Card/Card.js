@@ -1,21 +1,26 @@
 import { addToCart } from "@/app/redux/API_Slices/cartSlice";
+import { handleProductModal } from "@/app/redux/API_Slices/commonSlice";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-const Card = ({ item, handleOpenModal }) => {
+const Card = ({ item }) => {
   const dispatch = useDispatch();
   const handleAddProduct = (e, data) => {
     e.stopPropagation();
-    console.log("data", data);
+
     dispatch(addToCart(data));
   };
   const handleCardButton = (e) => {
     e.stopPropagation();
   };
+  const handleOpenModal = (e) => {
+    e.stopPropagation();
+    dispatch(handleProductModal(true));
+  };
   return (
     <button
       onClick={(e) => handleOpenModal(e)}
-      className="product-card cart-type-neon h-full transform overflow-hidden rounded border border-border-200 bg-light shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow"
+      className=" bg-white product-card cart-type-neon h-full transform overflow-hidden rounded border border-border-200 bg-light shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow"
     >
       <div className="relative flex h-48 w-auto cursor-pointer items-center justify-center sm:h-64">
         <span class="sr-only">Product Image</span>

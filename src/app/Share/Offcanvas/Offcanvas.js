@@ -9,7 +9,7 @@ const Offcanvas = () => {
   return (
     <div className=" ">
       {isShow && (
-        <div class="fixed z-10 overflow-y-auto top-0 w-full left-0 ">
+        <div class="fixed z-50 overflow-y-auto top-0 w-full left-0 ">
           <div class="flex items-center justify-center min-height-[100vh] pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity">
               <div class="absolute inset-0 bg-gray-900 opacity-75" />
@@ -39,6 +39,16 @@ const Offcanvas = () => {
                 <ShortCart />
                 <ShortCart />
               </div>
+              <footer class=" bg-white fixed bottom-0 z-10 w-full max-w-md bg-light px-6 py-5">
+                <button class=" bg-emerald-400 text-white flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14">
+                  <span class="flex h-full flex-1 items-center px-5 text-light">
+                    Checkout
+                  </span>
+                  <span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">
+                    $39.15
+                  </span>
+                </button>
+              </footer>
             </div>
           </div>
         </div>

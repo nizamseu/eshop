@@ -1,18 +1,18 @@
 "use client";
 import Image from "next/image";
-import Banner from "./Components/Banner/Banner";
-import Card from "./Share/Card/Card";
-import { useSelector, useDispatch } from "react-redux";
+
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Offcanvas from "./Share/Offcanvas/Offcanvas";
-import Sidebar from "./Components/Home/Sidebar";
-import ProductModal from "./Share/Modal/ProductModal";
-import MidiumCard from "./Share/Card/MidiumCard";
+
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
-import { handleProductModal } from "./redux/API_Slices/commonSlice";
-export default function Home({ children }) {
+import Banner from "../Components/Banner/Banner";
+import MidiumCard from "../Share/Card/MidiumCard";
+import Sidebar from "../Components/Home/Sidebar";
+import Card from "../Share/Card/Card";
+
+export default function page({ children }) {
   const cartData = useSelector((state) => state.cartSlice.cartData);
   const isShow = useSelector((state) => state.commonSlice.isCartShow);
   const [products, setProducts] = useState([]);

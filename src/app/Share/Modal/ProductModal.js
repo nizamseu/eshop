@@ -1,8 +1,14 @@
 import ProductDetails from "@/app/Components/Product/ProductDetails";
+import { handleProductModal } from "@/app/redux/API_Slices/commonSlice";
 import React, { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 
-const ProductModal = ({ setIsShowModal, onClose }) => {
+const ProductModal = ({}) => {
   const modalRef = useRef();
+  const dispatch = useDispatch();
+  const onClose = () => {
+    dispatch(handleProductModal(false));
+  };
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -19,7 +25,6 @@ const ProductModal = ({ setIsShowModal, onClose }) => {
       document.removeEventListener("mousedown", handleClickListener);
     };
   }, [onClose]);
-  console.log("onClose", onClose);
 
   return (
     <div>

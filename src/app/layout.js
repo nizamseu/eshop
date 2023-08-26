@@ -9,6 +9,7 @@ import { Providers } from "./redux/provider";
 import Offcanvas from "./Share/Offcanvas/Offcanvas";
 import { useState } from "react";
 import MobileFooer from "./Components/Footer/MobileFooer";
+import { useSelector } from "react-redux";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const [isShow, setIsShow] = useState(false);
+
   return (
     <html lang="en">
       <Providers>

@@ -6,6 +6,7 @@ const commonSlice = createSlice({
     isCartShow: false,
     isLeftOffset: false,
     isMobileSearch: false,
+    isShowModal: false,
   },
   reducers: {
     handleIsCartShow: (state, action) => {
@@ -21,10 +22,20 @@ const commonSlice = createSlice({
       state.isCartShow = false;
       state.isLeftOffset = false;
     },
+    handleProductModal: (state, action) => {
+      state.isShowModal = action.payload;
+      // state.isCartShow = false;
+      // state.isLeftOffset = false;
+      // state.isMobileSearch = false;
+    },
   },
 });
 
-export const { handleMobileSearch, handleIsCartShow, handleLeftOffset } =
-  commonSlice.actions;
+export const {
+  handleProductModal,
+  handleMobileSearch,
+  handleIsCartShow,
+  handleLeftOffset,
+} = commonSlice.actions;
 
 export default commonSlice.reducer;
