@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiFillHome } from "react-icons/ai";

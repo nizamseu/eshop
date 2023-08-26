@@ -17,7 +17,7 @@ export default function page({ children }) {
   const isShow = useSelector((state) => state.commonSlice.isCartShow);
   const [products, setProducts] = useState([]);
   const isShowModal = useSelector((state) => state.commonSlice.isShowModal);
-  console.log("isShow", isShow);
+
   useEffect(() => {
     const loadData = async () => {
       const res4 = await axios(
